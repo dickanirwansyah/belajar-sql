@@ -17,10 +17,23 @@ create table tbl_peminjaman(
 	constraint pk_tbl_peminjaman primary key(id_peminjaman)
 );
 
-/** query join -> tampilkan detail siswa yang meminjam buku **/
+/** query join -> tampilkan detail siswa yang meminjam buku dengan query join **/
 select ts.id_siswa, ts.nama, ts.address, ts.kelas, tp.judul from tbl_siswa ts join tbl_peminjaman tp 
 where ts.nama = tp.nama;
+/** atau **/
+select ts.id_siswa, ts.nama, tp.judul from tbl_siswa ts, tbl_peminjaman tp where ts.nama = tp.nama;
 
+/** query join -> tampilkan detail siswa yang meminjam buku dengan query left join **/
+select ts.id_siswa, ts.nama, tp.judul from tbl_siswa ts left join tbl_peminjaman tp on ts.nama = tp.nama;
+
+/** using case when **/
+select ts.id_siswa, ts.nama, 
+case 
+when (tp.judul) = 'MySQL For Beginner' then 'n/a'
+else 'MEMILIKI JUDUL'
+end as kondisi
+from tbl_siswa ts join tbl_peminjaman tp 
+on ts.nama = tp.nama order by ts.nama asc;
 
 /** example insert tbl_peminjaman **/
 insert into tbl_peminjaman(id_peminjaman, nama, judul, tgl_pinjam) 
