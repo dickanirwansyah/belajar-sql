@@ -86,6 +86,7 @@ select id_produk, nama,
 case when(kategori) = 'mie' then 'MAKANAN' when(kategori) = 'minuman' then 'MINUMAN' else 'TIDAK TERDETEKSI' end as kondisi
 from produk;
 
+/** case when **/
 select id_produk as KODE_PRODUK, nama as NAMA_PRODUK,
 case 
 when(kategori) = 'mie' then 'MAKANAN' 
@@ -95,5 +96,9 @@ when(kategori) = 'minuman' then 'MINUMAN'
 else 'TIDAK DIKETAHUI' end as KONDISI
 from produk WHERE stock > 900;
 
+/** sorting result by asc --> berdasarkan dari urutan abjad pertama **/
+select * from produk order by nama asc;
+/** sorting result by desc --> berdasarkan daro urutan abjad terakhir **/
+select * from produk order by nama desc;
 
 
